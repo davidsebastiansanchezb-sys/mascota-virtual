@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mascota Virtual</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Pantalla de archivos de guardado -->
+    <section id="pantallaInicio" class="pantalla activa">
+    <div class="card inicio-card menu-guardado">
+        <div class="icono-principal">🐾</div>
+
+        <h1>Mascota Virtual</h1>
+        <p>Elige el tipo de mascota y un archivo de guardado.</p>
+
+        <label for="nombre">Nombre para nueva mascota</label>
+        <input 
+        type="text" 
+        id="nombre" 
+        placeholder="Ejemplo: Luna" 
+        maxlength="15"
+        >
+
+        <!-- NUEVO: selector de tipo de mascota -->
+        <label>Elige el huevo de tu mascota</label>
+
+        <div class="selector-tipo">
+        <button type="button" class="btn-tipo activo" data-tipo="agua">
+            <img src="img/huevo-agua.jpeg" alt="Huevo de agua">
+            <p>Agua</p>
+        </button>
+
+        <button type="button" class="btn-tipo" data-tipo="desierto">
+            <img src="img/huevo-desierto.jpeg" alt="Huevo de desierto">
+            <p>Desierto</p>
+        </button>
+
+        <button type="button" class="btn-tipo" data-tipo="volcan">
+            <img src="img/huevo-volcan.jpeg" alt="Huevo de volcán">
+            <p>Volcán</p>
+        </button>
+        </div>
+
+        <input type="hidden" id="tipoMascota" value="agua">
+
+
+        <div class="ranuras-guardado">
+        <article class="ranura" id="ranura1">
+            <h3>Archivo 1</h3>
+            <p id="estadoSlot1">Vacío</p>
+
+            <div class="botones-ranura">
+            <button class="btn-crear" data-slot="1">Crear aquí</button>
+            <button class="btn-cargar" data-slot="1">Cargar</button>
+            <button class="btn-borrar" data-slot="1">Borrar</button>
+            </div>
+        </article>
+
+        <article class="ranura" id="ranura2">
+            <h3>Archivo 2</h3>
+            <p id="estadoSlot2">Vacío</p>
+
+            <div class="botones-ranura">
+            <button class="btn-crear" data-slot="2">Crear aquí</button>
+            <button class="btn-cargar" data-slot="2">Cargar</button>
+            <button class="btn-borrar" data-slot="2">Borrar</button>
+            </div>
+        </article>
+
+        <article class="ranura" id="ranura3">
+            <h3>Archivo 3</h3>
+            <p id="estadoSlot3">Vacío</p>
+
+            <div class="botones-ranura">
+            <button class="btn-crear" data-slot="3">Crear aquí</button>
+            <button class="btn-cargar" data-slot="3">Cargar</button>
+            <button class="btn-borrar" data-slot="3">Borrar</button>
+            </div>
+        </article>
+        </div>
+    </div>
+    </section>
+
+  <!-- Pantalla principal del juego -->
+  <section id="pantallaJuego" class="pantalla">
+    <div class="app">
+      <header class="header">
+        <div>
+          <p id="textoRanura">Archivo de guardado</p>
+          <h1 id="nombreMascota">Mascota</h1>
+        </div>
+
+        <button id="btnReiniciar" class="btn-icono" title="Volver al menú">☰</button>
+      </header>
+
+      <main class="card zona-mascota">
+        <div id="escenario" class="escenario">
+          <div class="sol">☀️</div>
+
+          <div id="zzz" class="zzz">Zzz...</div>
+
+          <img 
+            id="mascota" 
+            class="imagen-mascota feliz" 
+            src="img/mascota-agua.png" 
+            alt="Mascota virtual"
+            >
+
+        <p id="mensaje" class="mensaje">¡Hola! Estoy feliz de conocerte.</p>
+      </main>
+
+      <section class="card stats">
+        <div class="stat">
+          <div class="stat-info">
+            <span>🍎</span>
+            <p>Comida</p>
+            <strong id="numComida">80%</strong>
+          </div>
+          <div class="barra">
+            <div id="barComida" class="progreso comida"></div>
+          </div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-info">
+            <span>⚡</span>
+            <p>Energía</p>
+            <strong id="numEnergia">80%</strong>
+          </div>
+          <div class="barra">
+            <div id="barEnergia" class="progreso energia"></div>
+          </div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-info">
+            <span>🎮</span>
+            <p>Diversión</p>
+            <strong id="numDiversion">80%</strong>
+          </div>
+          <div class="barra">
+            <div id="barDiversion" class="progreso diversion"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="acciones">
+        <button id="btnComer" class="accion">
+          <span>🍎</span>
+          <p>Comer</p>
+        </button>
+
+        <button id="btnDormir" class="accion">
+          <span id="iconoDormir">🌙</span>
+          <p id="textoDormir">Dormir</p>
+        </button>
+
+        <button id="btnJugar" class="accion">
+          <span>🎮</span>
+          <p>Jugar</p>
+        </button>
+      </section>
+
+      <footer>
+        <p>Cuida a tu mascota todos los días.</p>
+      </footer>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

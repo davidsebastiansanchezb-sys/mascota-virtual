@@ -1,0 +1,1456 @@
+/* ==========================================================
+   RESET GENERAL
+   ========================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --fondo-oscuro: #070b18;
+  --fondo-card: rgba(255, 255, 255, 0.12);
+  --fondo-card-hover: rgba(255, 255, 255, 0.2);
+  --borde-card: rgba(255, 255, 255, 0.22);
+  --texto: #f8fafc;
+  --texto-suave: #cbd5e1;
+  --azul: #38bdf8;
+  --morado: #8b5cf6;
+  --verde: #22c55e;
+  --rojo: #ef4444;
+  --naranja: #f97316;
+  --amarillo: #facc15;
+  --sombra: 0 25px 70px rgba(0, 0, 0, 0.42);
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: var(--texto);
+  background:
+    radial-gradient(circle at 15% 10%, rgba(139, 92, 246, 0.55), transparent 28%),
+    radial-gradient(circle at 85% 20%, rgba(56, 189, 248, 0.45), transparent 30%),
+    radial-gradient(circle at 50% 100%, rgba(34, 197, 94, 0.35), transparent 35%),
+    linear-gradient(135deg, #050816, #111827 55%, #0f172a);
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
+
+/* ==========================================================
+   PANTALLAS
+   ========================================================== */
+
+.pantalla {
+  display: none;
+  min-height: 100vh;
+  padding: 26px;
+  justify-content: center;
+  align-items: center;
+}
+
+.pantalla.activa {
+  display: flex;
+}
+
+/* ==========================================================
+   TARJETAS PRINCIPALES
+   ========================================================== */
+
+.card {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0.08)
+  );
+  border: 1px solid var(--borde-card);
+  border-radius: 30px;
+  box-shadow: var(--sombra);
+  backdrop-filter: blur(20px);
+}
+
+.inicio-card {
+  width: 100%;
+  max-width: 800px;
+  padding: 36px;
+  text-align: center;
+  animation: aparecerCard 0.6s ease;
+}
+
+.icono-principal {
+  width: 92px;
+  height: 92px;
+  margin: 0 auto 18px;
+  display: grid;
+  place-items: center;
+  font-size: 46px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #8b5cf6, #06b6d4, #22c55e);
+  box-shadow:
+    0 0 30px rgba(56, 189, 248, 0.45),
+    0 18px 40px rgba(0, 0, 0, 0.28);
+}
+
+.inicio-card h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 10px;
+  letter-spacing: -1px;
+}
+
+.inicio-card > p {
+  max-width: 560px;
+  margin: 0 auto 28px;
+  color: var(--texto-suave);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* ==========================================================
+   INPUTS Y LABELS
+   ========================================================== */
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  text-align: left;
+  color: #e2e8f0;
+  font-weight: 800;
+}
+
+input {
+  width: 100%;
+  padding: 15px 17px;
+  margin-bottom: 22px;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  outline: none;
+  color: #0f172a;
+  background: rgba(255, 255, 255, 0.94);
+  font-size: 1rem;
+  font-weight: 700;
+  transition: 0.25s ease;
+}
+
+input::placeholder {
+  color: #64748b;
+}
+
+input:focus {
+  border-color: var(--azul);
+  box-shadow:
+    0 0 0 4px rgba(56, 189, 248, 0.25),
+    0 12px 25px rgba(56, 189, 248, 0.12);
+}
+
+/* ==========================================================
+   SELECTOR DE TIPO DE MASCOTA
+   ========================================================== */
+
+.selector-tipo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 26px;
+}
+
+.btn-tipo {
+  position: relative;
+  min-height: 105px;
+  padding: 16px 10px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  border-radius: 24px;
+  color: white;
+  background: rgba(255, 255, 255, 0.12);
+  font-weight: 900;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.btn-tipo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.35), rgba(139, 92, 246, 0.35));
+  transition: 0.25s ease;
+}
+
+.btn-tipo span {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-bottom: 7px;
+  font-size: 2.35rem;
+}
+
+.btn-tipo {
+  font-size: 0.95rem;
+}
+
+.btn-tipo:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.btn-tipo:hover::before {
+  opacity: 1;
+}
+
+.btn-tipo.activo {
+  border-color: var(--azul);
+  background: rgba(56, 189, 248, 0.22);
+  box-shadow:
+    0 0 0 4px rgba(56, 189, 248, 0.12),
+    0 0 28px rgba(56, 189, 248, 0.3);
+}
+
+.btn-tipo[data-tipo="agua"].activo {
+  border-color: #38bdf8;
+  box-shadow: 0 0 28px rgba(56, 189, 248, 0.45);
+}
+
+.btn-tipo[data-tipo="desierto"].activo {
+  border-color: #facc15;
+  box-shadow: 0 0 28px rgba(250, 204, 21, 0.45);
+}
+
+.btn-tipo[data-tipo="volcan"].activo {
+  border-color: #f97316;
+  box-shadow: 0 0 28px rgba(249, 115, 22, 0.45);
+}
+
+/* ==========================================================
+   RANURAS DE GUARDADO
+   ========================================================== */
+
+.ranuras-guardado {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 8px;
+}
+
+.ranura {
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+  border-radius: 26px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.11);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: 0.25s ease;
+}
+
+.ranura::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background:
+    radial-gradient(circle at top, rgba(56, 189, 248, 0.22), transparent 50%),
+    linear-gradient(135deg, rgba(139, 92, 246, 0.18), rgba(34, 197, 94, 0.12));
+  transition: 0.25s ease;
+}
+
+.ranura > * {
+  position: relative;
+  z-index: 1;
+}
+
+.ranura:hover {
+  transform: translateY(-6px);
+  border-color: rgba(56, 189, 248, 0.45);
+}
+
+.ranura:hover::before {
+  opacity: 1;
+}
+
+.ranura.ocupada {
+  border-color: rgba(34, 211, 238, 0.75);
+  box-shadow:
+    0 0 0 4px rgba(34, 211, 238, 0.08),
+    0 0 25px rgba(34, 211, 238, 0.18);
+}
+
+.ranura h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+
+.ranura p {
+  min-height: 82px;
+  display: grid;
+  place-items: center;
+  color: var(--texto-suave);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.ranura p strong {
+  color: #ffffff;
+  font-size: 1.05rem;
+}
+
+/* ==========================================================
+   BOTONES DE RANURA
+   ========================================================== */
+
+.botones-ranura {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-top: 12px;
+}
+
+.botones-ranura button {
+  padding: 11px 12px;
+  border: none;
+  border-radius: 14px;
+  color: white;
+  font-weight: 900;
+  cursor: pointer;
+  transition: 0.22s ease;
+}
+
+.botones-ranura button:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.08);
+}
+
+.btn-crear {
+  background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+  box-shadow: 0 10px 22px rgba(6, 182, 212, 0.18);
+}
+
+.btn-cargar {
+  background: linear-gradient(135deg, #22c55e, #14b8a6);
+  box-shadow: 0 10px 22px rgba(34, 197, 94, 0.18);
+}
+
+.btn-borrar {
+  background: linear-gradient(135deg, #ef4444, #f97316);
+  box-shadow: 0 10px 22px rgba(239, 68, 68, 0.18);
+}
+
+.btn-cargar.oculto,
+.btn-borrar.oculto,
+.btn-crear.oculto {
+  display: none;
+}
+
+/* ==========================================================
+   APP PRINCIPAL
+   ========================================================== */
+
+.app {
+  width: 100%;
+  max-width: 590px;
+  animation: aparecerCard 0.6s ease;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.header p {
+  color: var(--texto-suave);
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
+.header h1 {
+  font-size: clamp(1.9rem, 6vw, 2.5rem);
+  letter-spacing: -1px;
+}
+
+.btn-icono {
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 18px;
+  color: white;
+  background: rgba(255, 255, 255, 0.16);
+  font-size: 1.45rem;
+  cursor: pointer;
+  transition: 0.25s ease;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.22);
+}
+
+.btn-icono:hover {
+  transform: rotate(-8deg) scale(1.05);
+  background: rgba(255, 255, 255, 0.28);
+}
+
+/* ==========================================================
+   ESCENARIO
+   ========================================================== */
+
+.zona-mascota {
+  overflow: hidden;
+}
+
+.escenario {
+  position: relative;
+  height: 345px;
+  overflow: hidden;
+  background: linear-gradient(#9be7ff 0 60%, #f4d29b 60% 100%);
+  transition: background 0.45s ease;
+}
+
+.escenario::after {
+  content: "";
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  bottom: 0;
+  height: 70px;
+  opacity: 0.35;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.55), transparent 65%);
+}
+
+.sol {
+  position: absolute;
+  top: 28px;
+  right: 35px;
+  z-index: 2;
+  font-size: 3.2rem;
+  filter: drop-shadow(0 0 22px rgba(255, 255, 255, 0.75));
+}
+
+.escenario.noche {
+  background: linear-gradient(#0f172a 0 60%, #334155 60% 100%);
+}
+
+.escenario.noche .sol {
+  display: none;
+}
+
+.escenario.noche::before {
+  content: "🌙";
+  position: absolute;
+  top: 32px;
+  right: 42px;
+  z-index: 2;
+  font-size: 3rem;
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.65));
+}
+
+/* Tipos de escenario */
+
+.escenario.tipo-agua {
+  background: linear-gradient(#7dd3fc 0 58%, #0284c7 58% 100%);
+}
+
+.escenario.tipo-agua::before {
+  content: "🌊";
+  position: absolute;
+  left: 34px;
+  bottom: 105px;
+  z-index: 1;
+  font-size: 4.5rem;
+  filter: drop-shadow(0 12px 12px rgba(0, 0, 0, 0.18));
+}
+
+.escenario.tipo-desierto {
+  background: linear-gradient(#fde68a 0 58%, #d97706 58% 100%);
+}
+
+.escenario.tipo-desierto::before {
+  content: "🌵";
+  position: absolute;
+  left: 36px;
+  bottom: 104px;
+  z-index: 1;
+  font-size: 4.4rem;
+  filter: drop-shadow(0 12px 12px rgba(0, 0, 0, 0.18));
+}
+
+.escenario.tipo-volcan {
+  background: linear-gradient(#1f2937 0 58%, #7f1d1d 58% 100%);
+}
+
+.escenario.tipo-volcan::before {
+  content: "🌋";
+  position: absolute;
+  left: 32px;
+  bottom: 100px;
+  z-index: 1;
+  font-size: 4.8rem;
+  filter: drop-shadow(0 12px 12px rgba(0, 0, 0, 0.28));
+}
+
+/* ==========================================================
+   MASCOTA
+   ========================================================== */
+
+.mascota {
+  position: absolute;
+  left: 50%;
+  bottom: 58px;
+  z-index: 4;
+  width: 190px;
+  height: 200px;
+  transform: translateX(-50%);
+  transition: filter 0.3s ease;
+}
+
+.oreja {
+  position: absolute;
+  top: 5px;
+  width: 78px;
+  height: 92px;
+  border: 6px solid #5b21b6;
+  border-radius: 72% 28% 62% 38%;
+  background: linear-gradient(135deg, #c084fc, #7c3aed);
+}
+
+.oreja-izquierda {
+  left: 4px;
+  transform: rotate(-25deg);
+}
+
+.oreja-derecha {
+  right: 4px;
+  transform: rotate(25deg);
+}
+
+.cuerpo {
+  position: absolute;
+  top: 50px;
+  left: 15px;
+  width: 160px;
+  height: 142px;
+  border: 6px solid #5b21b6;
+  border-radius: 50% 50% 45% 45%;
+  background: linear-gradient(145deg, #d8b4fe, #7c3aed);
+  box-shadow:
+    inset -14px -12px 0 rgba(0, 0, 0, 0.14),
+    0 16px 30px rgba(0, 0, 0, 0.22);
+}
+
+.ojo {
+  position: absolute;
+  top: 46px;
+  width: 18px;
+  height: 25px;
+  border-radius: 50%;
+  background: #0f172a;
+  box-shadow: inset 4px 4px 0 rgba(255, 255, 255, 0.85);
+  transition: 0.25s;
+}
+
+.ojo-izquierdo {
+  left: 43px;
+}
+
+.ojo-derecho {
+  right: 43px;
+}
+
+.boca {
+  position: absolute;
+  top: 91px;
+  left: 50%;
+  width: 40px;
+  height: 19px;
+  border-bottom: 5px solid #0f172a;
+  border-radius: 0 0 50px 50px;
+  transform: translateX(-50%);
+  transition: 0.25s;
+}
+
+.mejilla {
+  position: absolute;
+  top: 80px;
+  width: 19px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(249, 168, 212, 0.9);
+}
+
+.mejilla-izquierda {
+  left: 25px;
+}
+
+.mejilla-derecha {
+  right: 25px;
+}
+
+.pie {
+  position: absolute;
+  bottom: 0;
+  width: 47px;
+  height: 25px;
+  border-radius: 50%;
+  background: #5b21b6;
+}
+
+.pie-izquierdo {
+  left: 43px;
+}
+
+.pie-derecho {
+  right: 43px;
+}
+
+.sombra {
+  position: absolute;
+  left: 50%;
+  bottom: 39px;
+  width: 225px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.28);
+  transform: translateX(-50%);
+  filter: blur(4px);
+}
+
+/* Tipos de mascota */
+
+.mascota.tipo-agua .oreja,
+.mascota.tipo-agua .cuerpo {
+  border-color: #075985;
+  background: linear-gradient(145deg, #a5f3fc, #0284c7);
+}
+
+.mascota.tipo-agua .pie {
+  background: #075985;
+}
+
+.mascota.tipo-desierto .oreja,
+.mascota.tipo-desierto .cuerpo {
+  border-color: #92400e;
+  background: linear-gradient(145deg, #fde68a, #d97706);
+}
+
+.mascota.tipo-desierto .pie {
+  background: #92400e;
+}
+
+.mascota.tipo-volcan .oreja,
+.mascota.tipo-volcan .cuerpo {
+  border-color: #450a0a;
+  background: linear-gradient(145deg, #fb923c, #991b1b);
+}
+
+.mascota.tipo-volcan .pie {
+  background: #450a0a;
+}
+
+/* Estados de mascota */
+
+.mascota.feliz {
+  animation: flotar 2.5s infinite ease-in-out;
+}
+
+.mascota.comiendo {
+  animation: comer 0.45s 3 ease-in-out;
+}
+
+.mascota.jugando {
+  animation: saltar 0.62s 3 ease-in-out;
+}
+
+.mascota.triste,
+.mascota.hambrienta,
+.mascota.cansada,
+.mascota.aburrida {
+  filter: saturate(0.8);
+}
+
+.mascota.triste .boca,
+.mascota.hambrienta .boca,
+.mascota.cansada .boca,
+.mascota.aburrida .boca {
+  top: 98px;
+  border-bottom: none;
+  border-top: 5px solid #0f172a;
+  border-radius: 50px 50px 0 0;
+}
+
+.mascota.triste .ojo,
+.mascota.hambrienta .ojo,
+.mascota.cansada .ojo,
+.mascota.aburrida .ojo {
+  height: 13px;
+  box-shadow: none;
+}
+
+.mascota.durmiendo {
+  animation: dormir 2s infinite ease-in-out;
+}
+
+.mascota.durmiendo .ojo {
+  height: 7px;
+  box-shadow: none;
+}
+
+.mascota.durmiendo .boca {
+  width: 22px;
+  height: 14px;
+  border: 4px solid #0f172a;
+  border-radius: 50%;
+}
+
+/* Objeto de acción */
+
+.objeto {
+  position: absolute;
+  right: 31%;
+  bottom: 132px;
+  z-index: 6;
+  display: none;
+  font-size: 3.4rem;
+  filter: drop-shadow(0 12px 10px rgba(0, 0, 0, 0.22));
+}
+
+.objeto.mostrar {
+  display: block;
+  animation: aparecerObjeto 0.85s ease;
+}
+
+.zzz {
+  position: absolute;
+  top: 88px;
+  right: 140px;
+  z-index: 6;
+  display: none;
+  color: white;
+  font-size: 1.9rem;
+  font-weight: 900;
+  text-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+  animation: subirZ 2s infinite;
+}
+
+.zzz.mostrar {
+  display: block;
+}
+
+/* ==========================================================
+   MENSAJE
+   ========================================================== */
+
+.mensaje {
+  min-height: 72px;
+  display: grid;
+  place-items: center;
+  padding: 18px 22px;
+  text-align: center;
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 900;
+  line-height: 1.4;
+}
+
+/* ==========================================================
+   ESTADÍSTICAS
+   ========================================================== */
+
+.stats {
+  margin-top: 18px;
+  padding: 23px;
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+}
+
+.stat-info {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  align-items: center;
+  gap: 9px;
+  font-weight: 900;
+}
+
+.stat-info span {
+  font-size: 1.2rem;
+}
+
+.stat-info strong {
+  color: #ffffff;
+  font-size: 0.95rem;
+}
+
+.barra {
+  height: 15px;
+  margin-top: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.progreso {
+  width: 80%;
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.comida {
+  background: linear-gradient(90deg, #fb7185, #f97316);
+  box-shadow: 0 0 18px rgba(249, 115, 22, 0.45);
+}
+
+.energia {
+  background: linear-gradient(90deg, #fde047, #facc15);
+  box-shadow: 0 0 18px rgba(250, 204, 21, 0.45);
+}
+
+.diversion {
+  background: linear-gradient(90deg, #34d399, #06b6d4);
+  box-shadow: 0 0 18px rgba(6, 182, 212, 0.45);
+}
+
+/* ==========================================================
+   ACCIONES
+   ========================================================== */
+
+.acciones {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.accion {
+  min-height: 98px;
+  position: relative;
+  overflow: hidden;
+  border: none;
+  border-radius: 24px;
+  color: white;
+  background: rgba(255, 255, 255, 0.13);
+  font-weight: 900;
+  cursor: pointer;
+  transition: 0.25s ease;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.25);
+}
+
+.accion::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(139, 92, 246, 0.25));
+  transition: 0.25s ease;
+}
+
+.accion span,
+.accion p {
+  position: relative;
+  z-index: 1;
+}
+
+.accion span {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 2.25rem;
+}
+
+.accion:hover:not(:disabled) {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.accion:hover:not(:disabled)::before {
+  opacity: 1;
+}
+
+.accion:disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+}
+
+/* ==========================================================
+   FOOTER
+   ========================================================== */
+
+footer {
+  padding: 20px;
+  text-align: center;
+  color: var(--texto-suave);
+  font-weight: 800;
+}
+
+/* ==========================================================
+   ANIMACIONES
+   ========================================================== */
+
+@keyframes aparecerCard {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes flotar {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(-9px);
+  }
+}
+
+@keyframes comer {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+  }
+
+  50% {
+    transform: translateX(-50%) scale(1.09);
+  }
+}
+
+@keyframes saltar {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0) rotate(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(-52px) rotate(8deg);
+  }
+}
+
+@keyframes dormir {
+  0%, 100% {
+    transform: translateX(-50%) rotate(-5deg) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) rotate(-5deg) translateY(6px);
+  }
+}
+
+@keyframes aparecerObjeto {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) rotate(-15deg);
+  }
+
+  70% {
+    opacity: 1;
+    transform: scale(1.18) rotate(8deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0);
+  }
+}
+
+@keyframes subirZ {
+  0% {
+    opacity: 0;
+    transform: translateY(22px) scale(0.85);
+  }
+
+  45% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-38px) scale(1.15);
+  }
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+
+@media (max-width: 760px) {
+  .pantalla {
+    padding: 18px;
+  }
+
+  .inicio-card {
+    padding: 28px;
+  }
+
+  .selector-tipo {
+    grid-template-columns: 1fr;
+  }
+
+  .ranuras-guardado {
+    grid-template-columns: 1fr;
+  }
+
+  .ranura p {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .header {
+    gap: 10px;
+  }
+
+  .escenario {
+    height: 310px;
+  }
+
+  .mascota {
+    transform: translateX(-50%) scale(0.9);
+    transform-origin: bottom center;
+  }
+
+  .acciones {
+    gap: 9px;
+  }
+
+  .accion {
+    min-height: 86px;
+    border-radius: 19px;
+    font-size: 0.88rem;
+  }
+
+  .accion span {
+    font-size: 2rem;
+  }
+
+  .stats {
+    padding: 19px;
+  }
+}
+/* ==========================================================
+   EVOLUCIÓN DE LA MASCOTA
+   Cuando evoluciona, crece y tiene un brillo especial.
+   ========================================================== */
+
+.mascota.evolucionada {
+  width: 225px;
+  height: 235px;
+  bottom: 48px;
+  filter: drop-shadow(0 0 22px rgba(255, 255, 255, 0.45));
+}
+
+.mascota.evolucionada .cuerpo {
+  width: 185px;
+  height: 165px;
+  left: 20px;
+  box-shadow:
+    inset -16px -14px 0 rgba(0, 0, 0, 0.16),
+    0 0 28px rgba(255, 255, 255, 0.25);
+}
+
+.mascota.evolucionada .oreja {
+  width: 88px;
+  height: 105px;
+}
+
+.mascota.evolucionada .ojo {
+  top: 55px;
+}
+
+.mascota.evolucionada .boca {
+  top: 105px;
+}
+
+.mascota.evolucionada .mejilla {
+  top: 94px;
+}
+
+.mascota.evolucionada .pie {
+  width: 55px;
+  height: 30px;
+}
+/* ==========================================================
+   MASCOTA CON IMÁGENES JPEG
+   ========================================================== */
+
+.imagen-mascota {
+  position: absolute;
+  left: 50%;
+  bottom: 45px;
+  z-index: 4;
+  width: 240px;
+  height: auto;
+  transform: translateX(-50%);
+  object-fit: contain;
+  border-radius: 18px;
+  transition: 0.3s ease;
+  filter: drop-shadow(0 18px 18px rgba(0, 0, 0, 0.35));
+}
+
+.imagen-mascota.feliz {
+  animation: flotarImagen 2.5s infinite ease-in-out;
+}
+
+.imagen-mascota.comiendo {
+  animation: comerImagen 0.45s 3 ease-in-out;
+}
+
+.imagen-mascota.jugando {
+  animation: saltarImagen 0.6s 3 ease-in-out;
+}
+
+.imagen-mascota.durmiendo {
+  transform: translateX(-50%) rotate(-5deg);
+  filter: brightness(0.75) drop-shadow(0 18px 18px rgba(0, 0, 0, 0.35));
+}
+
+.imagen-mascota.triste,
+.imagen-mascota.hambrienta,
+.imagen-mascota.cansada,
+.imagen-mascota.aburrida {
+  filter: grayscale(0.35) brightness(0.85) drop-shadow(0 18px 18px rgba(0, 0, 0, 0.35));
+}
+
+/* ==========================================================
+   TAMAÑOS SEGÚN LA ETAPA DE CRECIMIENTO
+   ========================================================== */
+
+/* Etapa bebé */
+
+.imagen-mascota.etapa-bebe {
+  width: 210px;
+  bottom: 25px;
+}
+
+/* Etapa joven */
+
+.imagen-mascota.etapa-joven {
+  width: 265px;
+  bottom: 18px;
+  filter:
+    drop-shadow(0 0 14px rgba(255, 255, 255, 0.25))
+    drop-shadow(0 18px 18px rgba(0, 0, 0, 0.5));
+}
+
+/* Etapa adulta */
+
+.imagen-mascota.etapa-adulta {
+  width: 325px;
+  bottom: 8px;
+  filter:
+    drop-shadow(0 0 25px rgba(255, 255, 255, 0.5))
+    drop-shadow(0 22px 20px rgba(0, 0, 0, 0.6));
+}
+
+@media (max-width: 520px) {
+  .imagen-mascota.etapa-bebe {
+    width: 165px;
+  }
+
+  .imagen-mascota.etapa-joven {
+    width: 205px;
+  }
+
+  .imagen-mascota.etapa-adulta {
+    width: 245px;
+  }
+}
+
+/* Imágenes del selector */
+
+.btn-tipo img {
+  position: relative;
+  z-index: 1;
+  width: 95px;
+  height: 95px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 8px;
+  border-radius: 14px;
+  filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.25));
+}
+
+.btn-tipo p {
+  position: relative;
+  z-index: 1;
+}
+
+/* Animaciones para imágenes */
+
+@keyframes flotarImagen {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+}
+
+@keyframes comerImagen {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+  }
+
+  50% {
+    transform: translateX(-50%) scale(1.08);
+  }
+}
+
+@keyframes saltarImagen {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0) rotate(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(-50px) rotate(6deg);
+  }
+}
+
+@media (max-width: 520px) {
+  .imagen-mascota {
+    width: 205px;
+  }
+
+  .imagen-mascota.evolucionada {
+    width: 250px;
+  }
+
+  .btn-tipo img {
+    width: 80px;
+    height: 80px;
+  }
+}
+/* ==========================================================
+   SELECTOR DE HUEVOS
+   ========================================================== */
+
+.selector-tipo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.btn-tipo {
+  position: relative;
+  min-height: 170px;
+  padding: 14px;
+  border: 2px solid transparent;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.13);
+  color: white;
+  font-weight: 900;
+  cursor: pointer;
+  overflow: hidden;
+  transition: 0.25s ease;
+}
+
+.btn-tipo img {
+  width: 100%;
+  height: 115px;
+  object-fit: cover;
+  border-radius: 18px;
+  display: block;
+  margin-bottom: 10px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+  transition: 0.25s ease;
+}
+
+.btn-tipo p {
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.btn-tipo:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.btn-tipo:hover img {
+  transform: scale(1.05);
+}
+
+.btn-tipo.activo {
+  border-color: #38bdf8;
+  background: rgba(56, 189, 248, 0.22);
+  box-shadow:
+    0 0 0 4px rgba(56, 189, 248, 0.12),
+    0 0 28px rgba(56, 189, 248, 0.35);
+}
+
+.btn-tipo[data-tipo="agua"].activo {
+  border-color: #38bdf8;
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.45);
+}
+
+.btn-tipo[data-tipo="desierto"].activo {
+  border-color: #facc15;
+  box-shadow: 0 0 30px rgba(250, 204, 21, 0.45);
+}
+
+.btn-tipo[data-tipo="volcan"].activo {
+  border-color: #f97316;
+  box-shadow: 0 0 30px rgba(249, 115, 22, 0.5);
+}
+
+@media (max-width: 700px) {
+  .selector-tipo {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-tipo {
+    min-height: 145px;
+  }
+
+  .btn-tipo img {
+    height: 95px;
+  }
+}
+/* ==========================================================
+   MASCOTAS PNG DENTRO DEL JUEGO
+   ========================================================== */
+
+.imagen-mascota {
+  position: absolute;
+  left: 50%;
+  bottom: 45px;
+  z-index: 4;
+  width: 250px;
+  height: auto;
+  transform: translateX(-50%);
+  object-fit: contain;
+  transition: 0.3s ease;
+  filter: drop-shadow(0 18px 18px rgba(0, 0, 0, 0.35));
+}
+
+.imagen-mascota.feliz {
+  animation: flotarImagen 2.5s infinite ease-in-out;
+}
+
+.imagen-mascota.comiendo {
+  animation: comerImagen 0.45s 3 ease-in-out;
+}
+
+.imagen-mascota.jugando {
+  animation: saltarImagen 0.6s 3 ease-in-out;
+}
+
+.imagen-mascota.durmiendo {
+  transform: translateX(-50%) rotate(-5deg);
+  filter: brightness(0.75) drop-shadow(0 18px 18px rgba(0, 0, 0, 0.35));
+}
+
+.imagen-mascota.triste,
+.imagen-mascota.hambrienta,
+.imagen-mascota.cansada,
+.imagen-mascota.aburrida {
+  filter: grayscale(0.35) brightness(0.85) drop-shadow(0 18px 18px rgba(0, 0, 0, 0.35));
+}
+
+.imagen-mascota.evolucionada {
+  width: 310px;
+  bottom: 28px;
+  filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.45));
+}
+
+@keyframes flotarImagen {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+}
+
+@keyframes comerImagen {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+  }
+
+  50% {
+    transform: translateX(-50%) scale(1.08);
+  }
+}
+
+@keyframes saltarImagen {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0) rotate(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(-50px) rotate(6deg);
+  }
+}
+
+@media (max-width: 520px) {
+  .imagen-mascota {
+    width: 210px;
+  }
+
+  .imagen-mascota.evolucionada {
+    width: 260px;
+  }
+}
+/* ==========================================================
+   FONDOS PERSONALIZADOS POR TIPO DE MASCOTA
+   Agua - Desierto - Volcán / Día - Noche
+   ========================================================== */
+
+.escenario {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Quita los emojis decorativos anteriores como 🌊 🌵 🌋 */
+.escenario.tipo-agua::before,
+.escenario.tipo-desierto::before,
+.escenario.tipo-volcan::before,
+.escenario.noche::before {
+  content: none !important;
+}
+
+/* Quita el sol anterior porque ya viene incluido en el fondo */
+.sol {
+  display: none;
+}
+
+/* Ajuste para que la mascota se vea bien sobre los fondos */
+.imagen-mascota {
+  bottom: 35px;
+  width: 250px;
+  filter: drop-shadow(0 18px 18px rgba(0, 0, 0, 0.55));
+}
+
+.imagen-mascota.evolucionada {
+  width: 310px;
+  bottom: 20px;
+}
+/* ==========================================================
+   MASCOTA EVOLUCIONADA CON IMAGEN PNG
+   ========================================================== */
+
+.imagen-mascota.evolucionada {
+  width: 330px;
+  bottom: 15px;
+  filter:
+    drop-shadow(0 0 25px rgba(255, 255, 255, 0.55))
+    drop-shadow(0 20px 18px rgba(0, 0, 0, 0.55));
+}
+
+@media (max-width: 520px) {
+  .imagen-mascota.evolucionada {
+    width: 270px;
+    bottom: 18px;
+  }
+}
